@@ -14,7 +14,7 @@ function App() {
     if(quarter < 4) {
       setQuarter(quarter + 1);
     } else {
-      setQuarter(1);
+      setQuarter("OT");
     }
   }
 
@@ -55,11 +55,8 @@ function App() {
         </div>
         <div className="quarterButtons">
           <button className="quarterButtons__nextQuarter" onClick={() => nextQuarter(quarter)}>Next Quarter</button>
-          <button className="quarterButtons__ot" onClick={() => setQuarter("OT")}>Overtime</button>
+          <button className="resetButton__reset" onClick={() => gameReset()}>Reset Game</button>
         </div>
-        <div className="resetButton">
-          <button className="resetButton__reset" onClick={() => gameReset()}>Reset Game</button>  
-        </div>    
       </section>
     </div>
   );

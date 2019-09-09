@@ -8,6 +8,22 @@ function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
 
+  const [quarter, setQuarter] = useState(1);
+
+  const nextQuarter = quarter => {
+    if(quarter < 4) {
+      setQuarter(quarter + 1);
+    } else {
+      setQuarter(1);
+    }
+  }
+
+  const gameReset = () => {
+    setHomeScore(0);
+    setAwayScore(0);
+    setQuarter(1);
+  }
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -25,7 +41,7 @@ function App() {
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow currentQuarter={quarter} />
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -37,6 +53,13 @@ function App() {
           <button className="awayButtons__touchdown" onClick={() => setAwayScore(awayScore + 7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={() => setAwayScore(awayScore + 3)}>Away Field Goal</button>
         </div>
+        <div className="quarterButtons">
+          <button className="quarterButtons__nextQuarter" onClick={() => nextQuarter(quarter)}>Next Quarter</button>
+          <button className="quarterButtons__ot" onClick={() => setQuarter("OT")}>Overtime</button>
+        </div>
+        <div className="resetButton">
+          <button className="resetButton__reset" onClick={() => gameReset()}>Reset Game</button>  
+        </div>    
       </section>
     </div>
   );

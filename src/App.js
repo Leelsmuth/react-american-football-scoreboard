@@ -13,8 +13,10 @@ function App() {
   const nextQuarter = quarter => {
     if(quarter < 4) {
       setQuarter(quarter + 1);
-    } else {
+    } else if (homeScore === awayScore) {
       setQuarter("OT");
+    } else {
+      setQuarter(1);
     }
   }
 
